@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Departments</title>
+</head>
+<style>
+    ul{
+        display: inline-block;
+        list-style-type: none;
+    }
+    li{
+        display: inline-block;
+    }
+</style>
+<body>
+<h>Departments</h>
+
+    <table border="1">
+        <thead>
+        <tr>
+
+            <th>dpId</th>
+            <th>dpName</th>
+
+
+        </tr>
+        <thead/>
+        <tbody>
+        <tr th:each="department: ${departments}">
+            <td th:utext="${department.dpId}">dpId</td>
+            <td th:utext="${department.dpName}">dpName</td>
+            <td><a th:href="@{department/{id}/delete(id=${department.dpId})}">Delete</a></td>
+
+
+        </tr>
+        </tbody>
+    </table>
+<ul th:each="page: ${pages}">
+    <li th:if="${currentPage != 1 && page == 1}">
+        <a th:href="@{'/department?page=' + ${currentPage - 1}}"> Previous  </a>
+    </li>
+    <li>
+        <a th:href="@{'/department?page=' + ${page}}">[[${page}]]</a>
+
+    </li>
+    <li th:if="${currentPage != countOfPages && page == countOfPages}">
+        <a th:href="@{'/department?page=' + ${currentPage + 1}}">  Next</a>
+    </li>
+</ul>
+<p><a th:href="@{department/create}">Create Department</a></p>
+<p><a th:href="@{/}">Return to the Home Page</a></p>
+
+
+
+
+
+</body>
+</html>

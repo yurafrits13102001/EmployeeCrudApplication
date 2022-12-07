@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit</title>
+</head>
+<body>
+<h1>Edit Employee</h1>
+<form th:method="PATCH" th:action="@{/employee/{id}/edit(id=${employee.empId})}" th:object="${employee}">
+    <label for="empName">New empName</label>
+    <input id="empName" type="text" th:field="*{empName}" required>
+    <div style="color:darkred" th:if="${#fields.hasErrors('empName')}" th:errors="*{empName}"></div>
+    <br/>
+
+    <label for="empActive">empActive</label>
+    <input id="empActive" type="checkbox" th:field="*{empActive}" th:value="Yes">
+    <br/>
+
+    <label for="empAge">Change age</label>
+    <input id="empAge" type="text" th:field="*{empAge}" required/>
+    <br/>
+
+    <label  for="empDate">Change date </label>
+    <a style="color:red">(please follow the form: year-month-day)</a>
+    <input id="empDate" type="text" th:field="*{date}" required/>
+    <br/>
+
+    <label >New empDepartment</label>
+    <select th:field="*{emp_dpID}">
+        <option th:each="department:${departments}" th:value="${department.dpId}" th:text="${department.dpName}"/>
+    </select>
+    <br/>
+    <input type="submit" th:value="Edit"/>
+    <button><a th:href="@{/employee}">Cancel</a></button>
+
+
+
+</form>
+
+</body>
+</html>

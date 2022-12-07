@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Search</title>
+</head>
+
+</style>
+<body>
+<h1>Enter name</h1>
+<form th:method="GET" th:action="@{'/employee/searching?page=' + ${page} + '&empName=' + ${empName} + '&empAge=' + ${empAge} + '&empDate=' + ${empDate}}" >
+    <label >Enter name</label>
+
+    <input  type="text" name="empName" th:value="${empName}"/>
+    <br/>
+
+    <label>Enter age</label>
+    <input type="text" name="empAge" th:value="${empAge}"/>
+    <br/>
+
+    <label>Enter date of joining</label>
+    <input type="text" name="empDate" th:value="${empDate}"/>
+    <a style="color:red">(please follow the form: year-month-day)</a>
+    <br/>
+
+
+
+
+    <button type="submit">Search</button>
+
+
+
+    <button><a th:href="@{/employee}">Cancel</a></button>
+
+</form>
+
+</body>
+</html>

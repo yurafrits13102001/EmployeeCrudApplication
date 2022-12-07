@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete</title>
+</head>
+<body>
+<form th:method="delete" th:action="@{/employee/{id}/deleting(id=${employee.empId})}" th:object="${employee}">
+    <input th:type="submit" value="Delete"/>
+    <button><a th:href="@{/employee}">Cancel</a></button>
+
+
+
+</form>
+
+</body>
+</html>

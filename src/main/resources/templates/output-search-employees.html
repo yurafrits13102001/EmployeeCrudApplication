@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    ul {
+        display: inline-block;
+        list-style-type: none;
+    }
+
+    li {
+        display: inline-block;
+    }
+</style>
+<body>
+<table border = "1">
+    <thead>
+    <tr>
+        <th>empId</th>
+        <th>empName</th>
+        <th>empActive</th>
+        <th>empAge</th>
+        <th>dateOfJoining</th>
+        <th>empDepartment</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="employee: ${employees}">
+        <td th:utext="${employee.empId}">empId</td>
+        <td th:utext="${employee.empName}">empName</td>
+        <td th:utext="${employee.empActive}">empActive</td>
+        <td th:utext="${employee.empAge}">empAge</td>
+        <td th:utext="${employee.date}">dateOfJoining</td>
+        <td th:utext="${employee.empDepartment}">empDepartment</td>
+
+        <td><a th:href="@{/employee/{id}/edit(id = ${employee.empId})}">Edit</a></td>
+        <td><a th:href="@{/employee/{id}/delete(id = ${employee.empId})}">Delete</a></td>
+
+    </tr>
+    </tbody>
+</table>
+<ul th:each="page: ${pages}" th:with="age = ${empAge == null} ? '' : ${empAge}">
+    <li th:if="${currentPage != 1 && page == 1}">
+        <a th:href="@{'/employee/searching?page=' + ${currentPage - 1} + '&empName=' + ${empName} + '&empAge=' + ${age} + '&empDate=' + ${empDate}}"> Previous </a>
+    </li>
+    <li>
+        <a th:href="@{'/employee/searching?page=' + ${page} + '&empName=' + ${empName} + '&empAge=' + ${age} + '&empDate=' + ${empDate}}">[[${page}]]</a>
+
+    </li>
+    <li th:if="${currentPage != countOfPages && page == countOfPages}">
+        <a th:href="@{'/employee/searching?page=' + ${currentPage + 1} + '&empName=' + ${empName} + '&empAge=' + ${age} + '&empDate=' + ${empDate}}"> Next</a>
+    </li>
+</ul>
+
+
+<p><a th:href="@{/employeePage}">Back to employees page</a></p>
+
+</body>
+</html>
